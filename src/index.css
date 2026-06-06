@@ -80,3 +80,45 @@ button:active {
 .strong {
   color: #22c55e;
 }
+
+#password-inp {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#password-inp button {
+  width: 50px;
+  min-width: 50px;
+  height: 50px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#password-inp img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+#password-inp button:hover {
+  transform: translateY(-2px);
+}
+
+#password-inp button:active {
+  transform: translateY(0);
+}
+
+#password-inp #inp {
+  flex: 1;
+}
+
+.copied-message {
+  text-align: center;
+  margin-top: 15px;
+  color: #22c55e;
+  font-weight: 600;
+  font-size: 15px;
+}

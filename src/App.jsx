@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import copyIcon from './assets/copy.png'
 
 function App() {
   const [password, setPassword] = useState("");
   const [strength, setStrength] = useState("");
   const [strengthClass, setStrengthClass] = useState("");
+  const [copied, setCopied] = useState(false);
+
   const CheckPassword = () => {
     let score = 0;
 
@@ -42,16 +45,33 @@ function App() {
 
     setPassword(newPassword);
   }
+
+  const CopyPassword = async () => {
+    if (password.length > 0){
+      await navigator.clipboard.writeText(password);
+      setCopied(true);
+    }
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
+
   return (
     <>
       <div id="box">
-        <input id='inp' 
-          type="text" 
-          placeholder='Enter Password' 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
+        <div id="password-inp">
+          <input id='inp' 
+            type="text" 
+            placeholder='Enter Password' 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={CopyPassword}>
+            <img src={copyIcon} alt="copy" />
+          </button>
+        </div>
+        
         <button onClick={CheckPassword}>
           Check Password Strength
         </button>
@@ -62,9 +82,9 @@ function App() {
           {strength}
         </p>
       </div>
-      
+      {copied && <p className="copied-message" >Password copied!</p>}
     </>
   )
 }
 
-export default App
+export default App;
